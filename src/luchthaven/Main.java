@@ -3,7 +3,6 @@
     import java.util.Scanner;
 
     public class Main {
-        private static int volgendeStap = 1;
         public static void main(String[] args) {
             Luchthaven luchthaven = new Luchthaven();
             Scanner scanner = new Scanner(System.in);
