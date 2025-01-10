@@ -52,7 +52,6 @@
                 case 7:
                     System.out.println("Applicatie afgesloten.");
                     scanner.close();
-                    System.exit(0);
                     break;
                 default:
                     System.out.println("Ongeldige keuze. Probeer het opnieuw.");
@@ -160,7 +159,7 @@
                 String naam = scanner.nextLine();
                 System.out.print("Leeftijd personeel: ");
                 int leeftijd = scanner.nextInt();
-                scanner.nextLine(); // consume newline
+                scanner.nextLine();
                 System.out.print("Functie (Piloot/Beveiligingspersoneel/Bagagepersoneel/Checkpersoneel): ");
                 String functie = scanner.nextLine();
 
