@@ -31,48 +31,32 @@
 
         // Verwerk de keuze van de gebruiker
         private static void verwerkKeuze(int keuze, Scanner scanner, Luchthaven luchthaven) {
-
-            // Eerst controleren si l'utilisateur veut quitter
-            if (keuze == 7) {
-                System.out.println("Applicatie afgesloten.");
-                scanner.close();
-                System.exit(0);
-            }
-
-            // Controleer of de gebruiker de juiste volgende stap heeft gekozen
-            if (keuze == volgendeStap) {
-
-                if (keuze == 1) {
+            switch (keuze) {
+                case 1:
                     voegPassagier(scanner, luchthaven);
-                    volgendeStap++; // Sta toe dat de volgende stap 2 wordt
-                }
-                else if (keuze == 2) {
+                    break;
+                case 2:
                     voegVlucht(scanner, luchthaven);
-                    volgendeStap++; // Sta toe dat de volgende stap 3 wordt
-                }
-                else if (keuze == 3) {
+                    break;
+                case 3:
                     maakTicket(scanner, luchthaven);
-                    volgendeStap++; // Volgende stap wordt 4
-                }
-                else if (keuze == 4) {
+                    break;
+                case 4:
                     voegBoarding(scanner, luchthaven);
-                    volgendeStap++; // Volgende stap wordt 5
-                }
-                else if (keuze == 5) {
+                    break;
+                case 5:
                     voegPersoneel(scanner, luchthaven);
-                    volgendeStap++; // Volgende stap wordt 6
-                }
-                else if (keuze == 6) {
+                    break;
+                case 6:
                     printVluchtInfo(scanner, luchthaven);
-                    volgendeStap++; // Als je opnieuw iets wilt, kan je de volgorde verder uitbreiden
-                }
-                else {
+                    break;
+                case 7:
+                    System.out.println("Applicatie afgesloten.");
+                    scanner.close();
+                    System.exit(0);
+                    break;
+                default:
                     System.out.println("Ongeldige keuze. Probeer het opnieuw.");
-                }
-
-            } else {
-                // Gebruiker heeft niet de verwachte volgende stap gekozen
-                System.out.println("U moet eerst stap " + volgendeStap + " uitvoeren.");
             }
         }
 
@@ -178,15 +162,20 @@
                 System.out.print("Leeftijd personeel: ");
                 int leeftijd = scanner.nextInt();
                 scanner.nextLine(); // consume newline
-                System.out.print("Functie (Piloot/Beveiliging/Baggage/Check): ");
+                System.out.print("Functie (Piloot/Beveiligingspersoneel/Bagagepersoneel/Checkpersoneel): ");
                 String functie = scanner.nextLine();
+
                 Personeel personeel = new Personeel(naam, leeftijd, functie);
                 vlucht.voegPersoneelToe(personeel);
-                System.out.println("Personeel toegewezen.");
+
+                System.out.println("Personeel toegewezen: " + naam + " (" + functie + ")");
+                System.out.println("Functie wordt uitgevoerd:");
+                personeel.voerFunctieUit();
             } else {
                 System.out.println("Vlucht niet gevonden.");
             }
         }
+
 
         // Print vluchtinformatie
         private static void printVluchtInfo(Scanner scanner, Luchthaven luchthaven) {
